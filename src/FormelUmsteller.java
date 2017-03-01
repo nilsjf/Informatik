@@ -253,6 +253,7 @@ public class FormelUmsteller extends JFrame {
 	}
 	
 	
+	
 	//Hier wird die Seite wo x ist herausgefunden und in xSeite ausgegeben
 	public static int xSeiteSuchen() {
 		for(int i=0; i<listEingabe1.size(); i++){
