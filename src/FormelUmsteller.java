@@ -34,6 +34,9 @@ public class FormelUmsteller extends JFrame {
 	
 	public static ArrayList<String> zs1 = new ArrayList<String>();
 	public static ArrayList<String> zs2 = new ArrayList<String>();
+	
+	public static ArrayList<Integer> sumPos1 = new ArrayList<Integer>();
+	public static ArrayList<Integer> sumPos2 = new ArrayList<Integer>();
 
 	public static ArrayList<String> listEingabe1 = new ArrayList<String>();
 	public static ArrayList<String> listEingabe2 = new ArrayList<String>();
@@ -252,7 +255,6 @@ public class FormelUmsteller extends JFrame {
 		return listEingabe2;
 	}
 	
-	
 	//Hier wird die Seite wo x ist herausgefunden und in xSeite ausgegeben
 	public static int xSeiteSuchen() {
 		for(int i=0; i<listEingabe1.size(); i++){
@@ -323,12 +325,14 @@ public class FormelUmsteller extends JFrame {
 				
 				if(listEingabe1.get(i).equals("+") || listEingabe1.get(i).equals("-")) {
 					zs1.add(listEingabe1.get(i));
+					sumPos1.add(i);
 					int x = i+1;
 						
 					if(listEingabe1.get(x).equals("+") == false && listEingabe1.get(x).equals("-") == false) {
 						int k = x;
 						while(listEingabe1.get(k).equals("+") == false && listEingabe1.get(k).equals("-") == false) {
 							zs1.add(listEingabe1.get(k));
+							sumPos1.add(k);
 							if(k != lastPos) {
 								k++;
 							}
@@ -340,20 +344,39 @@ public class FormelUmsteller extends JFrame {
 					
 					if(zs1.contains("x")) {
 						zs1.clear();
+						sumPos1.clear();
 						continue;
 					}
 					
-					//if(listEingabe1.get(x).equals("+") || listEingabe1.get(x).equals("-")) {
 					if(zs1.get(0).equals("+")) {
 						zs1.set(0, "-");
 					}
 					else if(zs1.get(0).equals("-")) {
 						zs1.set(0, "+");
 					}
+					
 					listEingabe2.add(zs1.toString());
+					
+					for(int l = 0; l < sumPos1.size(); l++) {
+						listEingabe1.set(sumPos1.get(l), " ");
+					}
+					
 					zs1.clear();
+					
+					for (int c3 = 0; c3 < listEingabe2.size(); c3++) {
+						if(listEingabe2.get(c3).startsWith("[")) {
+							String num = listEingabe2.get(c3).replaceAll("\\D", "");
+							listEingabe2.set(c3, num);
+						}
+					}
+					
+					for (int c4 = 0; c4 < listEingabe1.size(); c4++) {
+						if(listEingabe1.get(c4).equals(" ")) {
+							listEingabe1.remove(c4);
+						}
+					}
+					
 					continue;
-					//}
 				}
 				else {
 					continue;
