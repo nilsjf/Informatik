@@ -372,8 +372,8 @@ public class FormelUmsteller extends JFrame {
 							c4 = c4-1;
 						}
 					}
+					
 					i = i-1;
-					//
 					continue;
 				}
 				else {
