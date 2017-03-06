@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 @SuppressWarnings("serial")
 public class FormelUmsteller extends JFrame {
@@ -40,6 +41,8 @@ public class FormelUmsteller extends JFrame {
 
 	public static ArrayList<String> listEingabe1 = new ArrayList<String>();
 	public static ArrayList<String> listEingabe2 = new ArrayList<String>();
+	
+	public static HashMap<String, ArrayList<String>> listEingabe = new HashMap<String, ArrayList<String>>();
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -103,6 +106,7 @@ public class FormelUmsteller extends JFrame {
 				xSeiteSuchen();
 				//xPosSuchen();
 				summandenUmsteller();
+				teilen();
 				druck();
 				
 			}
@@ -266,44 +270,10 @@ public class FormelUmsteller extends JFrame {
 			if(listEingabe2.get(i).equals("x") == true){
 				xSeite = 2;
 			}
-			/*else{
-				System.out.println("Kein x vorhanden, bitte x hinzufügen");
-			}*/
 		}
-		
 		return xSeite;
-		/*int xSeite=0;
-		//Das macht Johann
-		/*public static int xSeite = 0;
-		for (int i...{
-		    if (listEingabe1.get(i).equals("x")mm
-		        xSeite = 1;
-		}
-		for (int i...{
-		    if (listEingabe2.get(i).equals("x")
-		        xSeite = 2;
-		}*/
 	}
-	
-	public static int xPosSuchen() {  
-	    if(xSeite == 1){
-	    	for(int i=0; i<listEingabe1.size(); i++){
-				if(listEingabe1.get(i).equals("x")){
-					xPos = i;
-				}
-			}
-		}
-	    if (xSeite == 2) {
-            for (int i=0; i<listEingabe2.size(); i++) {
-                if (listEingabe2.get(i).equals("x")){
-                    xPos = i;
-                }
-            }
-	    }
-	    return xPos ;
-	    
-	}
-	
+		
 	public static ArrayList<String> plusAdden1() {
 		if(listEingabe1.get(0).equals("+") == false && listEingabe1.get(0).equals("-") == false){
 			listEingabe1.add(0, "+");
@@ -318,7 +288,7 @@ public class FormelUmsteller extends JFrame {
 		return listEingabe2;
 	}
 	
-	public static void summandenUmsteller() {
+	public static HashMap<String, ArrayList<String>> summandenUmsteller() {
 		if(xSeite == 1) {
 			int lastPos = listEingabe1.size()-1;
 			for(int i = 0; i < listEingabe1.size(); i++) {
@@ -380,9 +350,17 @@ public class FormelUmsteller extends JFrame {
 					continue;
 				}
 			}
+			listEingabe.put("xSeite", listEingabe1);
+			listEingabe.put("eSeite", listEingabe2);
 		}
+		
+		return listEingabe;
 	}	
 	
+	public static HashMap<String, ArrayList<String>> teilen() {
+		
+	}
+
 	public static void druck() {
 		for (int i = 0; i < listEingabe1.size(); i++)
 			System.out.println(listEingabe1.get(i));
