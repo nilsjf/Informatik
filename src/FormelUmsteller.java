@@ -354,11 +354,75 @@ public class FormelUmsteller extends JFrame {
 			listEingabe.put("eSeite", listEingabe2);
 		}
 		
+		if(xSeite == 2) {
+			int lastPos = listEingabe2.size()-1;
+			for(int i = 0; i < listEingabe2.size(); i++) {
+				
+				if(listEingabe2.get(i).equals("+") || listEingabe2.get(i).equals("-")) {
+					zs2.add(listEingabe2.get(i));
+					sumPos2.add(i);
+					int x = i+1;
+						
+					if(listEingabe2.get(x).equals("+") == false && listEingabe2.get(x).equals("-") == false) {
+						int k = x;
+						while(listEingabe2.get(k).equals("+") == false && listEingabe2.get(k).equals("-") == false) {
+							zs2.add(listEingabe2.get(k));
+							sumPos2.add(k);
+							if(k != lastPos) {
+								k++;
+							}
+							else {
+								break;
+							}
+						}
+					}
+					
+					if(zs2.contains("x")) {
+						zs2.clear();
+						sumPos2.clear();
+						continue;
+					}
+					
+					if(zs2.get(0).equals("+")) {
+						zs2.set(0, "-");
+					}
+					else if(zs2.get(0).equals("-")) {
+						zs2.set(0, "+");
+					}
+					
+					for(int d = 0; d < zs2.size(); d++){
+						listEingabe1.add(zs2.get(d).toString());
+					}
+					
+					for(int l = 0; l < sumPos2.size(); l++) {
+						listEingabe2.set(sumPos2.get(l), " ");
+					}
+					
+					zs2.clear();
+					
+					for (int c4 = 0; c4 < listEingabe2.size(); c4++) {
+						if(listEingabe2.get(c4).equals(" ")) {
+							listEingabe2.remove(c4);
+							lastPos = lastPos-1;
+							c4 = c4-1;
+						}
+					}
+					
+					i = i-1;
+					continue;
+				}
+				else {
+					continue;
+				}
+			}
+			listEingabe.put("xSeite", listEingabe2);
+			listEingabe.put("eSeite", listEingabe1);
+		}
 		return listEingabe;
 	}	
 	
 	public static HashMap<String, ArrayList<String>> teilen() {
-		
+		return listEingabe;
 	}
 
 	public static void druck() {
