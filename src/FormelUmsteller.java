@@ -355,7 +355,9 @@ public class FormelUmsteller extends JFrame {
 						zs1.set(0, "+");
 					}
 					
-					listEingabe2.add(zs1.toString());
+					for(int d = 0; d < zs1.size(); d++){
+						listEingabe2.add(zs1.get(d).toString());
+					}
 					
 					for(int l = 0; l < sumPos1.size(); l++) {
 						listEingabe1.set(sumPos1.get(l), " ");
@@ -363,19 +365,14 @@ public class FormelUmsteller extends JFrame {
 					
 					zs1.clear();
 					
-					for (int c3 = 0; c3 < listEingabe2.size(); c3++) {
-						if(listEingabe2.get(c3).startsWith("[")) {
-							String num = listEingabe2.get(c3).replaceAll("\\D", "");
-							listEingabe2.set(c3, num);
-						}
-					}
-					
 					for (int c4 = 0; c4 < listEingabe1.size(); c4++) {
 						if(listEingabe1.get(c4).equals(" ")) {
 							listEingabe1.remove(c4);
+							lastPos = lastPos-1;
+							c4 = c4-1;
 						}
 					}
-					
+					i = i-1;
 					continue;
 				}
 				else {
