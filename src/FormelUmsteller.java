@@ -373,6 +373,7 @@ public class FormelUmsteller extends JFrame {
 						}
 					}
 					i = i-1;
+					//
 					continue;
 				}
 				else {
