@@ -104,6 +104,7 @@ public class FormelUmsteller extends JFrame {
 				plusAdden1();
 				plusAdden2();
 				xSeiteSuchen();
+				//XSeite.xSeiteInEinG();
 				//xPosSuchen();
 				summandenUmsteller();
 				teilen();
@@ -422,6 +423,17 @@ public class FormelUmsteller extends JFrame {
 	}	
 	
 	public static HashMap<String, ArrayList<String>> teilen() {
+		listEingabe.get("eSeite").add(0, "[");
+		listEingabe.get("eSeite").add("]");
+		listEingabe.get("xSeite").add(0, "[");
+		listEingabe.get("xSeite").add("]");
+		for (int i=0 ; i<listEingabe.get("xSeite").size(); i++) {
+			if (listEingabe.get("xSeite").equals("x") == false) {
+				
+			}
+		}
+		
+		
 		return listEingabe;
 	}
 
