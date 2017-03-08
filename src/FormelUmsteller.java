@@ -35,6 +35,7 @@ public class FormelUmsteller extends JFrame {
 	
 	public static ArrayList<String> zs1 = new ArrayList<String>();
 	public static ArrayList<String> zs2 = new ArrayList<String>();
+	public static ArrayList<String> zsTeil = new ArrayList<String>();
 	
 	public static ArrayList<Integer> sumPos1 = new ArrayList<Integer>();
 	public static ArrayList<Integer> sumPos2 = new ArrayList<Integer>();
@@ -108,6 +109,7 @@ public class FormelUmsteller extends JFrame {
 				//xPosSuchen();
 				summandenUmsteller();
 				teilen();
+				auflösen();
 				druck();
 				
 			}
@@ -427,22 +429,34 @@ public class FormelUmsteller extends JFrame {
 		listEingabe.get("eSeite").add("]");
 		listEingabe.get("xSeite").add(0, "[");
 		listEingabe.get("xSeite").add("]");
+		
 		for (int i=0 ; i<listEingabe.get("xSeite").size(); i++) {
-			if (listEingabe.get("xSeite").equals("x") == false) {
-				
+			if (listEingabe.get("xSeite").get(i).equals("x") == false) {
+				zsTeil.add(listEingabe.get("xSeite").get(i));
+				listEingabe.get("xSeite").remove(i);
+				i = i-1;
 			}
 		}
 		
+		listEingabe.get("eSeite").add("/");
 		
+		for (int j=0 ; j < zsTeil.size(); j++){
+			listEingabe.get("eSeite").add(zsTeil.get(j));
+		}
+		
+		return listEingabe;
+	}
+	
+	public static HashMap<String, ArrayList<String>> auflösen() {
 		return listEingabe;
 	}
 
 	public static void druck() {
-		for (int i = 0; i < listEingabe1.size(); i++)
-			System.out.println(listEingabe1.get(i));
+		for (int i = 0; i < listEingabe.get("xSeite").size(); i++)
+			System.out.println(listEingabe.get("xSeite").get(i));
 		System.out.println("===");
-		for (int j = 0; j < listEingabe2.size(); j++)
-			System.out.println(listEingabe2.get(j));
+		for (int j = 0; j < listEingabe.get("eSeite").size(); j++)
+			System.out.println(listEingabe.get("eSeite").get(j));
 		System.out.println("----------------");
 	}
 }
