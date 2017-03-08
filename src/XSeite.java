@@ -24,7 +24,7 @@ public class XSeite {
 				listEingabeX.add(FormelUmsteller.listEingabe2.get(i));
 			}
 			for(int i=0 ; i<FormelUmsteller.listEingabe1.size() ; i++ ){
-				listEingabeX.add(FormelUmsteller.listEingabe1.get(i));
+				listEingabeE.add(FormelUmsteller.listEingabe1.get(i));
 			}
 		}		
 	}
