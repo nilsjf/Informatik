@@ -105,7 +105,7 @@ public class FormelUmsteller extends JFrame {
 				plusAdden1();
 				plusAdden2();
 				xSeiteSuchen();
-				//XSeite.xSeiteInEinG();
+				XSeite.xSeiteInEinG();
 				//xPosSuchen();
 				summandenUmsteller();
 				teilen();
@@ -381,8 +381,16 @@ public class FormelUmsteller extends JFrame {
 	}
 	
 	public static HashMap<String, ArrayList<String>> auflösen() {
-		return listEingabe;
+		int faktorVorX = 0;
+		for(int i = 0; i<listEingabe.get("xSeite").size(); i++){
+			if (listEingabe.get("xSeite").get(i).equals("x")){
+				
+			}
+		}
+		
+		return listEingabe;		
 	}
+
 
 	public static void druck() {
 		for (int i = 0; i < listEingabe.get("xSeite").size(); i++)
