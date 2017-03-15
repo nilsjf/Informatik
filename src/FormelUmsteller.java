@@ -379,14 +379,25 @@ public class FormelUmsteller extends JFrame {
 	}
 	
 	public static HashMap<String, ArrayList<String>> auflösen() {
-		int faktorVor = 0;
+		/*int faktorTeil = 0;
 		for(int i = listEingabe.get("eSeite").size()-1 ; i>-1 ; i--){
-			if (listEingabe.get("eSeite").get(i).matches("\\d")){
+			//Start erst bei der vorletzten Stelle um die Klammer am Ende nicht als "Nichtzahl" erkannt wird
+			if (listEingabe.get("eSeite").get(i).equals("+")){
+				i=-1;
+				// wenn der Summand der vor dem x Stand zu Ende ist Stoppt die Schleife
+			}
+			if (listEingabe.get("eSeite").get(i).matches("\\d")==false){
+				faktorTeil++;
+			}	
+		}*/
+		
+		if(listEingabe.get("eSeite").get(listEingabe.get("eSeite").size()-1).matches("//d")){
+			for (int i=0; i<listEingabe.get("eSeite").size();i++){
 				
 			}
-			
 		}
 		
+
 		return listEingabe;		
 	}
 
