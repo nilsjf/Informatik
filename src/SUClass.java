@@ -39,13 +39,16 @@ public class SUClass {
 						break;
 					}
 				}
-				//hier wird überprüft ob in dem Summanden x Enthalten ist damit wir nicht den Summanden mit x auf die Aufdie andere Seite stellen
+				/*
+				 * hier wird überprüft ob in dem Summanden x Enthalten ist damit wir nicht
+				 *  den Summanden mit x auf die Auf die andere Seite stellen
+				*/
 				if(zs1.contains("x")) {
 					zs1.clear();
 					sumPos1.clear();
 					continue;
 				}
-				
+				// Der Summand bekommt ein anderes Vorzeichen und wirdauf die andere Seite gesetzt
 				if(zs1.get(0).equals("+")) {
 					zs1.set(0, "-");
 				}
@@ -72,7 +75,7 @@ public class SUClass {
 				}
 				
 				i = i-1;
-				continue;
+				continue;// dann wird von neuem angefangen um den nächsten Summanden umzustellen
 			}
 			else {
 				continue;
