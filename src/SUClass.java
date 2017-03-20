@@ -29,7 +29,7 @@ public class SUClass {
 				sumPos1.add(i);
 				//hier werden jetzt alle Weiteren Zeichen des Summanden in zs1 überführt
 				int k = i+1;
-				while(XSeite.listEingabeX.get(k).equals("+") == false && XSeite.listEingabeX.get(k).equals("-") == false) {
+				while(XSeite.listEingabeX.get(k).equals("+") == false && XSeite.listEingabeX.get(k).equals("-") == false){
 					zs1.add(XSeite.listEingabeX.get(k));
 					sumPos1.add(k);
 					if(k != lastPos) {
@@ -40,7 +40,7 @@ public class SUClass {
 					}
 				}
 				/*
-				 * hier wird üüberprüft ob in dem Summanden x Enthalten ist damit wir nicht
+				 * hier wird überprüft ob in dem Summanden x Enthalten ist damit wir nicht
 				 *  den Summanden mit x auf die Auf die andere Seite stellen
 				*/
 				if(zs1.contains("x")) {
