@@ -40,7 +40,7 @@ public class SUClass {
 					}
 				}
 				/*
-				 * hier wird überprüft ob in dem Summanden x Enthalten ist damit wir nicht
+				 * hier wird üüberprüft ob in dem Summanden x Enthalten ist damit wir nicht
 				 *  den Summanden mit x auf die Auf die andere Seite stellen
 				*/
 				if(zs1.contains("x")) {
