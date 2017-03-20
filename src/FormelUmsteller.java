@@ -37,6 +37,10 @@ public class FormelUmsteller extends JFrame {
 	public static ArrayList<String> zs2 = new ArrayList<String>();
 	public static ArrayList<String> zsTeil = new ArrayList<String>();
 	
+	public static double zsNenner;
+	public static double zsZähler;
+	public static double zsDivision;
+	
 	public static ArrayList<Integer> sumPos1 = new ArrayList<Integer>();
 	public static ArrayList<Integer> sumPos2 = new ArrayList<Integer>();
 
@@ -109,7 +113,8 @@ public class FormelUmsteller extends JFrame {
 				//xPosSuchen();
 				summandenUmsteller();
 				teilen();
-				//auflösen();
+				smdVereinfachen();
+				auflösen();
 				druck();
 				
 			}
@@ -378,27 +383,42 @@ public class FormelUmsteller extends JFrame {
 		return listEingabe;
 	}
 	
-	public static HashMap<String, ArrayList<String>> auflösen() {
-		/*int faktorTeil = 0;
-		for(int i = listEingabe.get("eSeite").size()-1 ; i>-1 ; i--){
-			//Start erst bei der vorletzten Stelle um die Klammer am Ende nicht als "Nichtzahl" erkannt wird
-			if (listEingabe.get("eSeite").get(i).equals("+")){
-				i=-1;
-				// wenn der Summand der vor dem x Stand zu Ende ist Stoppt die Schleife
-			}
-			if (listEingabe.get("eSeite").get(i).matches("\\d")==false){
-				faktorTeil++;
-			}	
-		}*/
-		
-		if(listEingabe.get("eSeite").get(listEingabe.get("eSeite").size()-1).matches("//d")){
-			for (int i=0; i<listEingabe.get("eSeite").size();i++){
+	public static HashMap<String, ArrayList<String>> smdVereinfachen() {
+		for(int i = listEingabe.get("eSeite").size()-1; i > -1; i--) {
+			if(listEingabe.get("eSeite").get(i).matches("*") || listEingabe.get("eSeite").get(i).matches("/")) {
 				
 			}
+			else if(listEingabe.get("eSeite").get(i).equals("[")) {
+	   			break;
+	   		}
 		}
-		
-
-		return listEingabe;		
+		return listEingabe;
+	}
+	
+	public static HashMap<String, ArrayList<String>> auflösen() {
+		for(int i = listEingabe.get("eSeite").size()-1; i > -1; i--) {
+	   		if(listEingabe.get("eSeite").get(i).matches("\\d+")) {
+	   			zsNenner = Double.parseDouble(listEingabe.get("eSeite").get(i));
+	   			listEingabe.get("eSeite").remove(i);
+	   		}
+	   		else if(listEingabe.get("eSeite").get(i).equals("[")) {
+	   			break;
+	   		}
+	   	}
+		boolean summandGeteilt = false;		
+		for(int j = 0; j < listEingabe.get("eSeite").size(); j++) {
+			if (listEingabe.get("eSeite").get(j).equals("+") || listEingabe.get("eSeite").get(j).equals("-")) {
+				summandGeteilt = true;
+			}
+			else if(listEingabe.get("eSeite").get(j).matches("\\d+") && summandGeteilt == true) {
+				zsZähler = Double.parseDouble(listEingabe.get("eSeite").get(j));
+				zsDivision = zsZähler/zsNenner;
+				listEingabe.get("eSeite").set(j, Double.toString(zsDivision));
+				summandGeteilt = false;
+			}
+		}
+	   	 
+	   	return listEingabe;
 	}
 
 
