@@ -105,11 +105,11 @@ public class FormelUmsteller extends JFrame {
 				plusAdden1();
 				plusAdden2();
 				xSeiteSuchen();
-				//XSeite.xSeiteInEinG();
+				XSeite.xSeiteInEinG();
 				//xPosSuchen();
 				summandenUmsteller();
 				teilen();
-				auflösen();
+				//auflösen();
 				druck();
 				
 			}
@@ -299,21 +299,19 @@ public class FormelUmsteller extends JFrame {
 				zs1.add(XSeite.listEingabeX.get(i));
 				sumPos1.add(i);
 				int x = i+1;
-					
-				if(XSeite.listEingabeX.get(x).equals("+") == false && XSeite.listEingabeX.get(x).equals("-") == false) {
-					int k = x;
-					while(XSeite.listEingabeX.get(k).equals("+") == false && XSeite.listEingabeX.get(k).equals("-") == false) {
-						zs1.add(XSeite.listEingabeX.get(k));
-						sumPos1.add(k);
-						if(k != lastPos) {
-							k++;
-						}
-						else {
-							break;
-						}
+				
+				int k = x;
+				while(XSeite.listEingabeX.get(k).equals("+") == false && XSeite.listEingabeX.get(k).equals("-") == false) {
+					zs1.add(XSeite.listEingabeX.get(k));
+					sumPos1.add(k);
+					if(k != lastPos) {
+						k++;
+					}
+					else {
+						break;
 					}
 				}
-				
+
 				if(zs1.contains("x")) {
 					zs1.clear();
 					sumPos1.clear();
@@ -381,8 +379,28 @@ public class FormelUmsteller extends JFrame {
 	}
 	
 	public static HashMap<String, ArrayList<String>> auflösen() {
-		return listEingabe;
+		/*int faktorTeil = 0;
+		for(int i = listEingabe.get("eSeite").size()-1 ; i>-1 ; i--){
+			//Start erst bei der vorletzten Stelle um die Klammer am Ende nicht als "Nichtzahl" erkannt wird
+			if (listEingabe.get("eSeite").get(i).equals("+")){
+				i=-1;
+				// wenn der Summand der vor dem x Stand zu Ende ist Stoppt die Schleife
+			}
+			if (listEingabe.get("eSeite").get(i).matches("\\d")==false){
+				faktorTeil++;
+			}	
+		}*/
+		
+		if(listEingabe.get("eSeite").get(listEingabe.get("eSeite").size()-1).matches("//d")){
+			for (int i=0; i<listEingabe.get("eSeite").size();i++){
+				
+			}
+		}
+		
+
+		return listEingabe;		
 	}
+
 
 	public static void druck() {
 		for (int i = 0; i < listEingabe.get("xSeite").size(); i++)
