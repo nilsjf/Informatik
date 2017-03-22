@@ -3,9 +3,9 @@ import java.util.HashMap;
 // Die Methode wurde von Johann in die Klasse überführt und KOMMENTIERT
 public class SUClass {
 	//Variablen
-	public static ArrayList<String> zs1 = new ArrayList<String>() ;
-	public static ArrayList<Integer> sumPos1 = new ArrayList<Integer>();
-	public static HashMap<String, ArrayList<String>> listEingabe = new HashMap<String, ArrayList<String>>();
+	//public static ArrayList<String> zs1 = new ArrayList<String>() ;
+	//public static ArrayList<Integer> sumPos1 = new ArrayList<Integer>();
+	//public static HashMap<String, ArrayList<String>> listEingabe = new HashMap<String, ArrayList<String>>();
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
@@ -24,14 +24,14 @@ public class SUClass {
 			
 			if(XSeite.listEingabeX.get(i).equals("+") || XSeite.listEingabeX.get(i).equals("-")) {
 				//zs1 ist eine ArrayList in der wir die Daten aus listEingabeX bearbeiten
-				zs1.add(XSeite.listEingabeX.get(i));
+				FormelUmsteller.zs1.add(XSeite.listEingabeX.get(i));
 				//sumPos1 enthält die Positionen von den +Zeichen und -Zeichen
-				sumPos1.add(i);
+				FormelUmsteller.sumPos1.add(i);
 				//hier werden jetzt alle Weiteren Zeichen des Summanden in zs1 überführt
 				int k = i+1;
 				while(XSeite.listEingabeX.get(k).equals("+") == false && XSeite.listEingabeX.get(k).equals("-") == false){
-					zs1.add(XSeite.listEingabeX.get(k));
-					sumPos1.add(k);
+					FormelUmsteller.zs1.add(XSeite.listEingabeX.get(k));
+					FormelUmsteller.sumPos1.add(k);
 					if(k != lastPos) {
 						k++;
 					}
@@ -43,28 +43,28 @@ public class SUClass {
 				 * hier wird überprüft ob in dem Summanden x Enthalten ist damit wir nicht
 				 *  den Summanden mit x auf die Auf die andere Seite stellen
 				*/
-				if(zs1.contains("x")) {
-					zs1.clear();
-					sumPos1.clear();
+				if(FormelUmsteller.zs1.contains("x")) {
+					FormelUmsteller.zs1.clear();
+					FormelUmsteller.sumPos1.clear();
 					continue;
 				}
 				// Der Summand bekommt ein anderes Vorzeichen und wirdauf die andere Seite gesetzt
-				if(zs1.get(0).equals("+")) {
-					zs1.set(0, "-");
+				if(FormelUmsteller.zs1.get(0).equals("+")) {
+					FormelUmsteller.zs1.set(0, "-");
 				}
-				else if(zs1.get(0).equals("-")) {
-					zs1.set(0, "+");
-				}
-				
-				for(int d = 0; d < zs1.size(); d++){
-					XSeite.listEingabeE.add(zs1.get(d).toString());
+				else if(FormelUmsteller.zs1.get(0).equals("-")) {
+					FormelUmsteller.zs1.set(0, "+");
 				}
 				
-				for(int l = 0; l < sumPos1.size(); l++) {
-					XSeite.listEingabeX.set(sumPos1.get(l), " ");
+				for(int d = 0; d < FormelUmsteller.zs1.size(); d++){
+					XSeite.listEingabeE.add(FormelUmsteller.zs1.get(d).toString());
 				}
 				
-				zs1.clear();
+				for(int l = 0; l < FormelUmsteller.sumPos1.size(); l++) {
+					XSeite.listEingabeX.set(FormelUmsteller.sumPos1.get(l), " ");
+				}
+				
+				FormelUmsteller.zs1.clear();
 				
 				for (int c4 = 0; c4 < XSeite.listEingabeX.size(); c4++) {
 					if(XSeite.listEingabeX.get(c4).equals(" ")) {
@@ -81,9 +81,9 @@ public class SUClass {
 				continue;
 			}
 		}
-		listEingabe.put("xSeite", XSeite.listEingabeX);
-		listEingabe.put("eSeite", XSeite.listEingabeE);
-		return listEingabe;
+		FormelUmsteller.listEingabe.put("xSeite", XSeite.listEingabeX);
+		FormelUmsteller.listEingabe.put("eSeite", XSeite.listEingabeE);
+		return FormelUmsteller.listEingabe;
 	}
 	
 	

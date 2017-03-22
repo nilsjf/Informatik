@@ -4,26 +4,26 @@ public class XSeite {
 
 	public static ArrayList<String> listEingabeX = new ArrayList<String>();
 	public static ArrayList<String> listEingabeE = new ArrayList<String>();
-	public static int xSeite;
+	//public static int xSeite;
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
 	}
-	/* Johann: hier wird die Eingabe, die X enthält in die Arraylist "listEingabeX" überführt
+	/* von Johann G. : hier wird die Eingabe, die X enthält in die Arraylist "listEingabeX" überführt
 	und die andere Seite wird in "listEingabeE" überführt */
 	
 	public static int xSeiteSuchen() {
 		for(int i=0; i<FormelUmsteller.listEingabe1.size(); i++){
 			if(FormelUmsteller.listEingabe1.get(i).equals("x") == true){
-				xSeite = 1;
+				FormelUmsteller.xSeite = 1;
 			}
 		}
 		for(int i=0; i<FormelUmsteller.listEingabe2.size(); i++){
 			if(FormelUmsteller.listEingabe2.get(i).equals("x") == true){
-				xSeite = 2;
+				FormelUmsteller.xSeite = 2;
 			}
 		}
-		return xSeite;
+		return FormelUmsteller.xSeite;
 	}
 	
 	public static void xSeiteInEinG(){
