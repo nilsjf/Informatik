@@ -384,13 +384,38 @@ public class FormelUmsteller extends JFrame {
 	}
 	
 	public static HashMap<String, ArrayList<String>> smdVereinfachen() {
+		int anzahlZahlen = 0;
 		for(int i = listEingabe.get("eSeite").size()-1; i > -1; i--) {
-			if(listEingabe.get("eSeite").get(i).matches("*") || listEingabe.get("eSeite").get(i).matches("/")) {
-				
+			if(listEingabe.get("eSeite").get(i).matches("//d+")) {
+				anzahlZahlen++;
 			}
 			else if(listEingabe.get("eSeite").get(i).equals("[")) {
 	   			break;
 	   		}
+		}
+		if (anzahlZahlen>1){//noch nicht funktionsfähig!
+			double faktor;
+			for(int i = listEingabe.get("eSeite").size()-1; i > -1; i--) {
+				if(listEingabe.get("eSeite").get(i).matches("//d+") && listEingabe.get("eSeite").get(i-1).matches("/") == false) {
+					faktor = Double.parseDouble(listEingabe.get("eSeite").get(i));
+					i--;
+					if(listEingabe.get("eSeite").get(i-1).matches("/")){
+						faktor = 1/faktor;
+					}
+					while (i>-1){
+						if(listEingabe.get("eSeite").get(i).matches("//d+") && listEingabe.get("eSeite").get(i-1).matches("/") == false) {
+							faktor = faktor*Double.parseDouble(listEingabe.get("eSeite").get(i));
+						}
+						else if(listEingabe.get("eSeite").get(i-1).matches("/")){
+							faktor = faktor*1/Double.parseDouble(listEingabe.get("eSeite").get(i));
+						}
+						if(listEingabe.get("eSeite").get(i).equals("[")) {
+				   			break;
+				   		}
+						i--;
+					}
+				}
+			}		
 		}
 		return listEingabe;
 	}
