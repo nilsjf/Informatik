@@ -396,7 +396,7 @@ public class FormelUmsteller extends JFrame {
 	}
 	
 	public static HashMap<String, ArrayList<String>> auflösen() {
-		for(int i = listEingabe.get("eSeite").size()-1; i > -1; i--) {//
+		for(int i = listEingabe.get("eSeite").size()-1; i > -1; i--) {
 	   		if(listEingabe.get("eSeite").get(i).matches("\\d+")) {
 	   			zsNenner = Double.parseDouble(listEingabe.get("eSeite").get(i));
 	   			listEingabe.get("eSeite").remove(i);
