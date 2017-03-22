@@ -281,21 +281,21 @@ public class FormelUmsteller extends JFrame {
 		}
 		return xSeite;
 	}
-		
+	//ist überführt	
 	public static ArrayList<String> plusAdden1() {
 		if(listEingabe1.get(0).equals("+") == false && listEingabe1.get(0).equals("-") == false){
 			listEingabe1.add(0, "+");
 		}
 		return listEingabe1;
 	}
-	
+	//ist überführt
 	public static ArrayList<String> plusAdden2() {
 		if(listEingabe2.get(0).equals("+") == false && listEingabe2.get(0).equals("-") == false){
 			listEingabe2.add(0, "+");
 		}
 		return listEingabe2;
 	}
-	
+	//ist überführt
 	public static HashMap<String, ArrayList<String>> summandenUmsteller() {
 		int lastPos = XSeite.listEingabeX.size()-1;
 		for(int i = 0; i < XSeite.listEingabeX.size(); i++) {
