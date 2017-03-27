@@ -100,19 +100,18 @@ public class FormelUmsteller extends JFrame {
 		btnStart.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				createString1();
-				createString2();
-				createArrayString1();
-				createArrayString2();
-				createListEingabe1();
-				createListEingabe2();
-				plusAdden1();
-				plusAdden2();
-				xSeiteSuchen();
+				LEingaben.createString1();
+				LEingaben.createString2();
+				LEingaben.createArrayString1();
+				LEingaben.createArrayString2();
+				LEingaben.createListEingabe1();
+				LEingaben.createListEingabe2();
+				PlusAdden.plusAdden1();
+				PlusAdden.plusAdden2();
+				XSeite.xSeiteSuchen();
 				XSeite.xSeiteInEinG();
-				//xPosSuchen();
-				summandenUmsteller();
-				teilen();
+				SUClass.summandenUmsteller();
+				TeilenClass.teilen();
 				smdVereinfachen();
 				auflösen();
 				druck();
@@ -120,27 +119,27 @@ public class FormelUmsteller extends JFrame {
 			}
 		});
 	}
-	
+	// ist überführt in "LEingabe"
 	public static String createString1() {
 		string1 = eingabe1.getText();
 		return string1;
 	}
-	
+	// ist überführt in "LEingabe"
 	public static String createString2() {
 		string2 = eingabe2.getText();
 		return string2;
 	}
-	
+	// ist überführt in "LEingabe"
 	public static char[] createArrayString1() {
 		arrayString1 = string1.toCharArray();
 		return arrayString1;
 	}
-	
+	// ist überführt in "LEingabe"
 	public static char[] createArrayString2() {
 		arrayString2 = string2.toCharArray();
 		return arrayString2;
 	}
-	
+	//ist überführt
 	public static ArrayList<String> createListEingabe1() {
 		for(int crtPos1 = 0; crtPos1 < arrayString1.length; crtPos1++) {
 			int lastPos1 = crtPos1 - 1;
@@ -203,7 +202,7 @@ public class FormelUmsteller extends JFrame {
 		}
 		return listEingabe1;
 	}
-	
+	//ist überführt
 	public static ArrayList<String> createListEingabe2() {
 		for(int crtPos2 = 0; crtPos2 < arrayString2.length; crtPos2++) {
 			int lastPos2 = crtPos2 - 1;
@@ -266,7 +265,7 @@ public class FormelUmsteller extends JFrame {
 		}
 		return listEingabe2;
 	}
-	
+	//ist überführt
 	//Hier wird die Seite wo x ist herausgefunden und in xSeite ausgegeben
 	public static int xSeiteSuchen() {
 		for(int i=0; i<listEingabe1.size(); i++){
@@ -384,38 +383,13 @@ public class FormelUmsteller extends JFrame {
 	}
 	
 	public static HashMap<String, ArrayList<String>> smdVereinfachen() {
-		int anzahlZahlen = 0;
 		for(int i = listEingabe.get("eSeite").size()-1; i > -1; i--) {
-			if(listEingabe.get("eSeite").get(i).matches("//d+")) {
-				anzahlZahlen++;
+			if(listEingabe.get("eSeite").get(i).matches("*") || listEingabe.get("eSeite").get(i).matches("/")) {
+				
 			}
 			else if(listEingabe.get("eSeite").get(i).equals("[")) {
 	   			break;
 	   		}
-		}
-		if (anzahlZahlen>1){//noch nicht funktionsfähig!
-			double faktor;
-			for(int i = listEingabe.get("eSeite").size()-1; i > -1; i--) {
-				if(listEingabe.get("eSeite").get(i).matches("//d+") && listEingabe.get("eSeite").get(i-1).matches("/") == false) {
-					faktor = Double.parseDouble(listEingabe.get("eSeite").get(i));
-					i--;
-					if(listEingabe.get("eSeite").get(i-1).matches("/")){
-						faktor = 1/faktor;
-					}
-					while (i>-1){
-						if(listEingabe.get("eSeite").get(i).matches("//d+") && listEingabe.get("eSeite").get(i-1).matches("/") == false) {
-							faktor = faktor*Double.parseDouble(listEingabe.get("eSeite").get(i));
-						}
-						else if(listEingabe.get("eSeite").get(i-1).matches("/")){
-							faktor = faktor*1/Double.parseDouble(listEingabe.get("eSeite").get(i));
-						}
-						if(listEingabe.get("eSeite").get(i).equals("[")) {
-				   			break;
-				   		}
-						i--;
-					}
-				}
-			}		
 		}
 		return listEingabe;
 	}
