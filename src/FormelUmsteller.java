@@ -47,7 +47,7 @@ public class FormelUmsteller extends JFrame {
 	public static ArrayList<String> listEingabe1 = new ArrayList<String>();
 	public static ArrayList<String> listEingabe2 = new ArrayList<String>();
 	
-	public static HashMap<String, ArrayList<String>> listEingabe = new HashMap<String, ArrayList<String>>();
+	public static HashMap<String, ArrayList<String>> listEingabeHM = new HashMap<String, ArrayList<String>>();
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -355,104 +355,108 @@ public class FormelUmsteller extends JFrame {
 				continue;
 			}
 		}
-		listEingabe.put("xSeite", XSeite.listEingabeX);
-		listEingabe.put("eSeite", XSeite.listEingabeE);
-		return listEingabe;
+		listEingabeHM.put("xSeite", XSeite.listEingabeX);
+		listEingabeHM.put("eSeite", XSeite.listEingabeE);
+		return listEingabeHM;
 	}	
 	
 	public static HashMap<String, ArrayList<String>> teilen() {
-		listEingabe.get("eSeite").add(0, "[");
-		listEingabe.get("eSeite").add("]");
-		listEingabe.get("xSeite").add(0, "[");
-		listEingabe.get("xSeite").add("]");
+		listEingabeHM.get("eSeite").add(0, "[");
+		listEingabeHM.get("eSeite").add("]");
+		listEingabeHM.get("xSeite").add(0, "[");
+		listEingabeHM.get("xSeite").add("]");
 		
-		for (int i=0 ; i<listEingabe.get("xSeite").size(); i++) {
-			if (listEingabe.get("xSeite").get(i).equals("x") == false) {
-				zsTeil.add(listEingabe.get("xSeite").get(i));
-				listEingabe.get("xSeite").remove(i);
+		for (int i=0 ; i<listEingabeHM.get("xSeite").size(); i++) {
+			if (listEingabeHM.get("xSeite").get(i).equals("x") == false) {
+				zsTeil.add(listEingabeHM.get("xSeite").get(i));
+				listEingabeHM.get("xSeite").remove(i);
 				i = i-1;
 			}
 		}
 		
-		listEingabe.get("eSeite").add("/");
+		listEingabeHM.get("eSeite").add("/");
 		
 		for (int j=0 ; j < zsTeil.size(); j++){
-			listEingabe.get("eSeite").add(zsTeil.get(j));
+			listEingabeHM.get("eSeite").add(zsTeil.get(j));
 		}
 		
-		return listEingabe;
+		return listEingabeHM;
 	}
 	
-	public static HashMap<String, ArrayList<String>> smdVereinfachen() {
+	public static HashMap<String, ArrayList<String>> smdVereinfachen() {//immernoch nicht gut
 		int anzahlZahlen = 0;
-		for(int i = listEingabe.get("eSeite").size()-1; i > -1; i--) {
-			if(listEingabe.get("eSeite").get(i).matches("//d+")) {
+		for(int i = listEingabeHM.get("eSeite").size()-1; i >= 0; i--) {
+			if(listEingabeHM.get("eSeite").get(i).matches("\\d+")) {
 				anzahlZahlen++;
 			}
-			else if(listEingabe.get("eSeite").get(i).equals("[")) {
+			else if(listEingabeHM.get("eSeite").get(i).equals("[")) {
 	   			break;
 	   		}
 		}
 		if (anzahlZahlen>1){//noch nicht funktionsfähig!
-			double faktor;
-			for(int i = listEingabe.get("eSeite").size()-1; i > -1; i--) {
-				if(listEingabe.get("eSeite").get(i).matches("//d+") && listEingabe.get("eSeite").get(i-1).matches("/") == false) {
-					faktor = Double.parseDouble(listEingabe.get("eSeite").get(i));
-					i--;
-					if(listEingabe.get("eSeite").get(i-1).matches("/")){
+			double faktor = 1;
+			for(int i = listEingabeHM.get("eSeite").size()-1; i > -1; i--) {
+				if(listEingabeHM.get("eSeite").get(i).matches("\\d+") && listEingabeHM.get("eSeite").get(i-1).matches("/") == false) {
+					faktor = Double.parseDouble(listEingabeHM.get("eSeite").get(i));
+					if(listEingabeHM.get("eSeite").get(i-1).matches("/")){
 						faktor = 1/faktor;
 					}
+					listEingabeHM.get("eSeite").remove(i);
+					i--;
 					while (i>-1){
-						if(listEingabe.get("eSeite").get(i).matches("//d+") && listEingabe.get("eSeite").get(i-1).matches("/") == false) {
-							faktor = faktor*Double.parseDouble(listEingabe.get("eSeite").get(i));
+						if(listEingabeHM.get("eSeite").get(i).matches("\\d+") && listEingabeHM.get("eSeite").get(i-1).matches("/") == false) {
+							faktor = faktor*Double.parseDouble(listEingabeHM.get("eSeite").get(i));
+							if(listEingabeHM.get("eSeite").get(i-1).matches("/")){
+								faktor = faktor*1/Double.parseDouble(listEingabeHM.get("eSeite").get(i));
+							}
+							listEingabeHM.get("eSeite").remove(i);
 						}
-						else if(listEingabe.get("eSeite").get(i-1).matches("/")){
-							faktor = faktor*1/Double.parseDouble(listEingabe.get("eSeite").get(i));
-						}
-						if(listEingabe.get("eSeite").get(i).equals("[")) {
+						if(listEingabeHM.get("eSeite").get(i).equals("[")) {
 				   			break;
 				   		}
 						i--;
-					}
+					}					
 				}
+				String faktorString = String.valueOf(faktor);
+				listEingabeHM.get("eSeite").add(faktorString);
 			}		
 		}
-		return listEingabe;
+		return listEingabeHM;
 	}
 	
 	public static HashMap<String, ArrayList<String>> auflösen() {
-		for(int i = listEingabe.get("eSeite").size()-1; i > -1; i--) {//
-	   		if(listEingabe.get("eSeite").get(i).matches("\\d+")) {
-	   			zsNenner = Double.parseDouble(listEingabe.get("eSeite").get(i));
-	   			listEingabe.get("eSeite").remove(i);
+		for(int i = listEingabeHM.get("eSeite").size()-1; i > -1; i--) {//
+	   		if(listEingabeHM.get("eSeite").get(i).contains("1") || listEingabeHM.get("eSeite").get(i).contains("2") || listEingabeHM.get("eSeite").get(i).contains("3") || listEingabeHM.get("eSeite").get(i).contains("4") || listEingabeHM.get("eSeite").get(i).contains("5") || listEingabeHM.get("eSeite").get(i).contains("6") || listEingabeHM.get("eSeite").get(i).contains("7") || listEingabeHM.get("eSeite").get(i).contains("8") || listEingabeHM.get("eSeite").get(i).contains("9") || listEingabeHM.get("eSeite").get(i).contains("0")) {
+	   			zsNenner = Double.parseDouble(listEingabeHM.get("eSeite").get(i));
+	   			listEingabeHM.get("eSeite").remove(i);
 	   		}
-	   		else if(listEingabe.get("eSeite").get(i).equals("[")) {
+	   		else if(listEingabeHM.get("eSeite").get(i).equals("[")) {
 	   			break;
 	   		}
 	   	}
 		boolean summandGeteilt = false;		
-		for(int j = 0; j < listEingabe.get("eSeite").size(); j++) {
-			if (listEingabe.get("eSeite").get(j).equals("+") || listEingabe.get("eSeite").get(j).equals("-")) {
+		for(int j = 0; j < listEingabeHM.get("eSeite").size(); j++) {
+			if (listEingabeHM.get("eSeite").get(j).equals("+") || listEingabeHM.get("eSeite").get(j).equals("-")) {
 				summandGeteilt = true;
 			}
-			else if(listEingabe.get("eSeite").get(j).matches("\\d+") && summandGeteilt == true) {
-				zsZähler = Double.parseDouble(listEingabe.get("eSeite").get(j));
+			else if(listEingabeHM.get("eSeite").get(j).contains("1") || listEingabeHM.get("eSeite").get(j).contains("2") || listEingabeHM.get("eSeite").get(j).contains("3") || listEingabeHM.get("eSeite").get(j).contains("4") || listEingabeHM.get("eSeite").get(j).contains("5") || listEingabeHM.get("eSeite").get(j).contains("6") || listEingabeHM.get("eSeite").get(j).contains("7") || listEingabeHM.get("eSeite").get(j).contains("8") || listEingabeHM.get("eSeite").get(j).contains("9") || listEingabeHM.get("eSeite").get(j).contains("0") && summandGeteilt == true) {
+				zsZähler = Double.parseDouble(listEingabeHM.get("eSeite").get(j));
 				zsDivision = zsZähler/zsNenner;
-				listEingabe.get("eSeite").set(j, Double.toString(zsDivision));
+				listEingabeHM.get("eSeite").set(j, Double.toString(zsDivision));
 				summandGeteilt = false;
 			}
 		}
 	   	 
-	   	return listEingabe;
+	   	return listEingabeHM;
 	}
 
 
 	public static void druck() {
-		for (int i = 0; i < listEingabe.get("xSeite").size(); i++)
-			System.out.println(listEingabe.get("xSeite").get(i));
+		for (int i = 0; i < listEingabeHM.get("xSeite").size(); i++)
+			System.out.println(listEingabeHM.get("xSeite").get(i));
 		System.out.println("===");
-		for (int j = 0; j < listEingabe.get("eSeite").size(); j++)
-			System.out.println(listEingabe.get("eSeite").get(j));
+		for (int j = 0; j < listEingabeHM.get("eSeite").size(); j++)
+			System.out.println(listEingabeHM.get("eSeite").get(j));
 		System.out.println("----------------");
 	}
 }
