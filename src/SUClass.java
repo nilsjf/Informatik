@@ -81,9 +81,9 @@ public class SUClass {
 				continue;
 			}
 		}
-		FormelUmsteller.listEingabe.put("xSeite", XSeite.listEingabeX);
-		FormelUmsteller.listEingabe.put("eSeite", XSeite.listEingabeE);
-		return FormelUmsteller.listEingabe;
+		FormelUmsteller.listEingabeHM.put("xSeite", XSeite.listEingabeX);
+		FormelUmsteller.listEingabeHM.put("eSeite", XSeite.listEingabeE);
+		return FormelUmsteller.listEingabeHM;
 	}
 	
 	
