@@ -6,7 +6,28 @@ public class LEingaben {
 		// TODO Auto-generated method stub
 
 	}
-
+	
+	//Diese Klasse überführt einge Eingaben der Textfelder in zwei ArrayLists (listEingabe1 und listEingabe2)
+	
+	public static String createString1() {
+		FormelUmsteller.string1 = FormelUmsteller.eingabe1.getText();
+		return FormelUmsteller.string1;
+	}
+	
+	public static String createString2() {
+		FormelUmsteller.string2 = FormelUmsteller.eingabe2.getText();
+		return FormelUmsteller.string2;
+	}
+	
+	public static char[] createArrayString1() {
+		FormelUmsteller.arrayString1 = FormelUmsteller.string1.toCharArray();
+		return FormelUmsteller.arrayString1;
+	}
+	
+	public static char[] createArrayString2() {
+		FormelUmsteller.arrayString2 = FormelUmsteller.string2.toCharArray();
+		return FormelUmsteller.arrayString2;
+	}
 	
 	public static ArrayList<String> createListEingabe1() {
 		for(int crtPos1 = 0; crtPos1 < FormelUmsteller.arrayString1.length; crtPos1++) {
