@@ -121,29 +121,6 @@ public class FormelUmsteller extends JFrame {
 	}
 	
 	
-	public static HashMap<String, ArrayList<String>> teilen() {
-		listEingabeHM.get("eSeite").add(0, "[");
-		listEingabeHM.get("eSeite").add("]");
-		listEingabeHM.get("xSeite").add(0, "[");
-		listEingabeHM.get("xSeite").add("]");
-		
-		for (int i=0 ; i<listEingabeHM.get("xSeite").size(); i++) {
-			if (listEingabeHM.get("xSeite").get(i).equals("x") == false) {
-				zsTeil.add(listEingabeHM.get("xSeite").get(i));
-				listEingabeHM.get("xSeite").remove(i);
-				i = i-1;
-			}
-		}
-		
-		listEingabeHM.get("eSeite").add("/");
-		
-		for (int j=0 ; j < zsTeil.size(); j++){
-			listEingabeHM.get("eSeite").add(zsTeil.get(j));
-		}
-		
-		return listEingabeHM;
-	}
-	
 	public static HashMap<String, ArrayList<String>> smdVereinfachen() {//immernoch nicht gut
 		int anzahlZahlen = 0;
 		for(int i = listEingabeHM.get("eSeite").size()-1; i >= 0; i--) {
