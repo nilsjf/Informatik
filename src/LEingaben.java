@@ -6,7 +6,7 @@ public class LEingaben {
 		// TODO Auto-generated method stub
 
 	}
-	
+	// von Johann überführt
 	//Diese Klasse überführt einge Eingaben der Textfelder in zwei ArrayLists (listEingabe1 und listEingabe2)
 	
 	public static String createString1() {
