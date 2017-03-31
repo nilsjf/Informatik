@@ -112,7 +112,7 @@ public class FormelUmsteller extends JFrame {
 				XSeite.xSeiteInEinG();
 				SUClass.summandenUmsteller();
 				TeilenClass.teilen();
-				//smdVereinfachen();
+				//smdVereinfachen();   wird nicht im Programm genutzt, da es noch fehlerhaft ist
 				auflösen();
 				druck();
 				
