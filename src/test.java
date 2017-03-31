@@ -1,5 +1,5 @@
 
-public class test {
+public class test {// nur eine test klasse! hier wurde die Funktionsweise von verschiedenen Methoden getestet
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

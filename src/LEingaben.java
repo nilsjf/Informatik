@@ -29,7 +29,7 @@ public class LEingaben {
 		return FormelUmsteller.arrayString2;
 	}
 	
-	public static ArrayList<String> createListEingabe1() {
+	public static ArrayList<String> createListEingabe1() { 
 		for(int crtPos1 = 0; crtPos1 < FormelUmsteller.arrayString1.length; crtPos1++) {
 			int lastPos1 = crtPos1 - 1;
 			int nextPos1 = crtPos1 + 1;

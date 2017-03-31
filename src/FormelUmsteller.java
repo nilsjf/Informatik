@@ -112,7 +112,7 @@ public class FormelUmsteller extends JFrame {
 				XSeite.xSeiteInEinG();
 				SUClass.summandenUmsteller();
 				TeilenClass.teilen();
-				smdVereinfachen();
+				//smdVereinfachen();
 				auflösen();
 				druck();
 				
@@ -121,7 +121,8 @@ public class FormelUmsteller extends JFrame {
 	}
 	
 	
-	public static HashMap<String, ArrayList<String>> smdVereinfachen() {//immernoch nicht gut
+	public static HashMap<String, ArrayList<String>> smdVereinfachen() {// diese Methode sollte eigentlich dafür sorgen, dass der faktor, der anfangs vor dem x gestanden hat vereinfacht wird soweit es möglich ist. Diese Methode ist jedoch nicht funktionstÜchtig,woraus folgt, dass nur Eingaben getätigt werden können bei denen der faktor vor dem "x" nur eine zahl enthält.
+		//Versuch von Paul geschrieben
 		int anzahlZahlen = 0;
 		for(int i = listEingabeHM.get("eSeite").size()-1; i >= 0; i--) {
 			if(listEingabeHM.get("eSeite").get(i).matches("\\d+")) {
@@ -160,7 +161,8 @@ public class FormelUmsteller extends JFrame {
 	}
 	
 	
-	public static HashMap<String, ArrayList<String>> auflösen() {
+	public static HashMap<String, ArrayList<String>> auflösen() {// in dieser methode wird die in der "TeilenClass" Klasse Klammer soweit wie möglich ausmultipliziert. Buchstaben, also Parameter werden hierbei zu gunsten der übersicht am Ende nicht ausmultipliziert.
+		// von Paul und Nils geschrieben
 		for(int i = listEingabeHM.get("eSeite").size()-1; i > -1; i--) {//
 	   		if(listEingabeHM.get("eSeite").get(i).contains("1") || listEingabeHM.get("eSeite").get(i).contains("2") || listEingabeHM.get("eSeite").get(i).contains("3") || listEingabeHM.get("eSeite").get(i).contains("4") || listEingabeHM.get("eSeite").get(i).contains("5") || listEingabeHM.get("eSeite").get(i).contains("6") || listEingabeHM.get("eSeite").get(i).contains("7") || listEingabeHM.get("eSeite").get(i).contains("8") || listEingabeHM.get("eSeite").get(i).contains("9") || listEingabeHM.get("eSeite").get(i).contains("0")) {
 	   			zsNenner = Double.parseDouble(listEingabeHM.get("eSeite").get(i));
@@ -170,7 +172,7 @@ public class FormelUmsteller extends JFrame {
 	   			break;
 	   		}
 	   	}
-		boolean summandGeteilt = false;		
+		boolean summandGeteilt = false;	//dieser boolean sorgt dafür, dass die einzelnen summanden nur einmal geteilt werden, auch wenn zwei zahlen in dem summanden sind z.B. 5b10	
 		for(int j = 0; j < listEingabeHM.get("eSeite").size(); j++) {
 			if (listEingabeHM.get("eSeite").get(j).equals("+") || listEingabeHM.get("eSeite").get(j).equals("-")) {
 				summandGeteilt = true;
@@ -187,12 +189,11 @@ public class FormelUmsteller extends JFrame {
 	}
 
 
-	public static void druck() {
-		for (int i = 0; i < listEingabeHM.get("xSeite").size(); i++)
-			System.out.println(listEingabeHM.get("xSeite").get(i));
-		System.out.println("===");
-		for (int j = 0; j < listEingabeHM.get("eSeite").size(); j++)
-			System.out.println(listEingabeHM.get("eSeite").get(j));
-		System.out.println("----------------");
+	public static void druck() { //Die rechnungen, die in der Hashmap abgelaufen sind werden hier in die Textfelder eingefügt um die Lösung auch Sichtbar zu machen. Von Paul geschrieben
+		eingabe2.setText("");
+		for (int i = 0; i<listEingabeHM.get("eSeite").size(); i++){
+			eingabe2.setText(eingabe2.getText()+listEingabeHM.get("eSeite").get(i));
+		}
+		eingabe1.setText("x");
 	}
 }

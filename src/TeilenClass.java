@@ -9,7 +9,8 @@ public class TeilenClass {
 	}
 
 	
-	public static HashMap<String, ArrayList<String>> teilen() {
+	public static HashMap<String, ArrayList<String>> teilen() { // Die Zahlen und Buchstaben bzw. Parameter werden in dieser Methode durch teilen auf die Ergebnissseite gezogen um das "x" alleine auf seiner Seite stehen bleibt.
+		//Von Paul und Nils geschrieben
 		FormelUmsteller.listEingabeHM.get("eSeite").add(0, "[");
 		FormelUmsteller.listEingabeHM.get("eSeite").add("]");
 		FormelUmsteller.listEingabeHM.get("xSeite").add(0, "[");
